@@ -1,7 +1,6 @@
 <?php
 session_start();
 
-
 ?>
 <!DOCTYPE html>
 <html>
@@ -33,21 +32,33 @@ $conn = mysqli_connect($servername, $username, $password, $database);
 		$req= mysqli_query($conn,$quest);
 		$res=mysqli_fetch_all($req, MYSQLI_ASSOC);
 
-if  ((isset($_POST['login']) and ($_POST['login']) != '')){
-	if  ((isset($_POST['password']) and ($_POST['password']) != '')){
-			for($i=0; $i<isset($res[$i]);$i++){
-				if(($_POST['login']===$res[$i]['login']) and ($_POST['password']===$res[$i]['password'])){
-							
-							echo '<span class="hiddenbuttons">';
-							echo '<form action="profil.php" method="post">';
-							echo '<input type="submit" name="connect" value="connect" class="hiddenbuttons"></span>';
-							echo '</form></span>';
 
-				} elseif (($_POST['login']!==$res[$i]['login']) and ($_POST['password']!==$res[$i]['password'])){
-					echo '<span class="ads">⚠️ wrong username or password</span>';
+
+if 	( ((isset($_POST['login']) and ($_POST['login']) != '')) and
+		((isset($_POST['password']) and ($_POST['password']) != '')) ){
+		$usercheck=0;
+				foreach($res as $k => $v){
+					foreach($v as $k2 => $v2){
+						if($v2 === $_POST['login']){
+							$usercheck++;
+						}
+						if ($v2 === $_POST['password']){
+									$usercheck++;
+						}
+					}
 				}
-			}
-	}
+				if($usercheck >= 2 ){
+
+							$_SESSION['user'] = $_POST['login'];
+							$_SESSION['connected'] = $_POST['login'];
+									
+									if(isset($_POST['submit'])){
+									
+										header( "Location: profil.php" );
+
+									}	
+
+				} else { echo '<span class="ads">⚠️ invalid username or password </span>'; }
 } elseif (isset($_SESSION['subscribe'])) {
 		echo '<span class="ads">Hi! '.'<h2>'. $_SESSION['subscribe'] .'</h2>'.' please insert your username and password to enter in your account </span>';
 } elseif (isset($_POST['submit'])) {
@@ -58,9 +69,9 @@ if  ((isset($_POST['login']) and ($_POST['login']) != '')){
 
 ?>
 
-			<br><br><br><br><br><br><br><br>
+			<br>
 			<a href="index.php" target="_top">go back to the home page </a>
-			<br><br><br><br>
+			<br><br>
 		</div>
 	</div>
 	<br><br><br><br>

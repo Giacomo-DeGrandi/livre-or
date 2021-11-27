@@ -80,6 +80,7 @@ footer {
 	border-radius: 1vh;
 	background-color: var(--yellow);
 	color: white;
+	font-size: 0.8em;
 }
 
 #connwrapper {
@@ -102,6 +103,7 @@ footer {
 }
 
 #connbody a {
+	margin-top: 1vh;
 	color: black;
 	box-shadow: var(--buttonshad);
 }
@@ -125,6 +127,7 @@ footer {
 }
 
 .hiddenbuttons {
+
 	color: black;
 	background-color: var(--yellow) ;
 	border-radius: 2vh;
@@ -133,7 +136,7 @@ footer {
 	box-shadow: var(--buttonshad);
 }
 
-.buttons1:hover {
+.hiddenbuttons:hover {
 	color: #800080;
 	background-color: var(--yellow) ;
 	border-radius: 2vh;
