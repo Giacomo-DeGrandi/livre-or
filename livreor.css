@@ -70,16 +70,20 @@ input {
 
 }
 
-
+header{
+	display: flex;
+	float: right;
+}
 
 footer {
+	display: flex;
 	float: right;
 	justify-content: flex-end;
 	align-items: flex-end;
 	padding: 1vh;
 	border-radius: 1vh;
 	background-color: var(--yellow);
-	color: white;
+	color: var(--bkgcolor);
 	font-size: 0.8em;
 }
 
@@ -194,6 +198,7 @@ footer {
 	color: var(--black);
 	background-color: var(--white);
 	border-radius: 2vh;
+	height: 100%;
 }
 
 #seediv {
@@ -240,4 +245,33 @@ padding: 4vh;
 #commentsform {
 	padding: 2vh;
 	box-shadow: var(--mainshad);
+}
+
+
+/*commentaire*/
+
+#reviewformwrapper {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+#reviewformwrapper a {
+	color: var(--black);
+}
+
+#reviewform {
+	background-color: var(--white);
+	padding: 3vh;
+	border-radius: 2vh;
+	box-shadow: var(--mainshad);
+}
+
+#datecomments {
+		border-radius: 2vh;
+	box-shadow: var(--mainshad);
+	background-color: var(--bkgcolor);
+	color: var(--white);
+	float: right;
+	padding: 0.5vh;
 }

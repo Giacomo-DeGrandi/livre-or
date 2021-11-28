@@ -102,8 +102,6 @@ if( ((isset($_POST['username']) and ($_POST['username']) != '')) and
 
 			$res = mysqli_fetch_all($req, MYSQLI_ASSOC);
 
-			var_dump($res);
-
 	for($i=0; $i<=isset($res[$i]); $i++){
 		foreach($res[$i] as $k => $v){
 			if($v !== $_POST['username']){
@@ -143,7 +141,7 @@ if (isset($_POST['disconnect'])){
 		</form>
 <?php 
 
-if (isset($_POST['disconnect'])){
+if (isset($_POST['goldenbook'])){
 
 	$_SESSION['connected'] = $_SESSION['user'];
 

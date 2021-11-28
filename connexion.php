@@ -11,6 +11,9 @@ session_start();
 	<link href="livreor.css" rel="stylesheet">
 </head>
 <body>
+	<header>
+			<a href="livre-or.php" target="_top">go to the reviews</a>
+	</header>
 	<div id="connwrapper">
 		<div id="connbody">
 			<h1> Log In </h1>
@@ -37,20 +40,21 @@ if 	( ((isset($_POST['login']) and ($_POST['login']) != '')) and
 
 		$login=$_POST['login'];
  
-		$quest= "SELECT login, password FROM utilisateurs WHERE login = '$login' ";
+		$quest= "SELECT login, password, id FROM utilisateurs WHERE login = '$login' ";
 		$req= mysqli_query($conn,$quest);
 		$res=mysqli_fetch_all($req, MYSQLI_ASSOC);
 
+		$usercheck=0;
 				foreach($res as $k => $v){
-					foreach($v as $k2 => $v2){
-						if($v2 === $_POST['login']){ 
+						if($v['login'] === $_POST['login']){ 
 							$usercheck++;
-						} else { echo '<span> wrong username</span>'; }
-						if ($v2 === $_POST['password']){
+						} else { echo '<span> wrong username </span>';}
+						if ($v['password'] === $_POST['password']){
 									$usercheck++;
 
 								if($usercheck >= 2 ){
 
+								$_SESSION['id'] = $v['id'];
 								$_SESSION['user'] = $_POST['login'];
 								$_SESSION['connected'] = $_POST['login'];
 								$_SESSION['password'] = $_POST['password'];
@@ -62,8 +66,7 @@ if 	( ((isset($_POST['login']) and ($_POST['login']) != '')) and
 
 								} else { echo '<span class="ads">⚠️ invalid username or password </span>'; }
 
-						} else { echo '<span> wrong username</span>'; }
-					}
+						} else { echo '<span> wrong password</span>';}
 				}
 } elseif (isset($_POST['submit'])) {
 	echo '<span class="ads">⚠️ please insert your username and password </span>'; 

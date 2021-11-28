@@ -1,3 +1,7 @@
+<?php
+session_start();
+
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -7,6 +11,53 @@
 	<link href="livreor.css" rel="stylesheet">
 </head>
 <body>
+	<div id="reviewformwrapper">
+		<div id="reviewform">
+<?php
 
+if(isset($_SESSION['user'])){
+	echo '<h2> hi '. $_SESSION['user'].'</h2>';
+} else { header('Location: connexion.php');
+}
+
+?>
+			<h4>write your review here</h4>
+			<form action='' method='post' id="reviewform">
+				<textarea id="comments" name="comments" rows="7" cols="100">
+				</textarea>
+				<input type="submit" name="send" value="submit" class="buttons1"><br><br>
+			</form>
+		<div>
+<?php
+
+echo "<span id='datecomments'>today is the " . date("Y/m/d") . "</span><br>";
+
+if(isset($_POST['comments'])){
+	if(isset($_POST['send'])){
+
+		$servername = 'localhost';
+		$username = 'root';
+		$password = '';
+		$database = 'livreor';
+
+		$conn = mysqli_connect($servername, $username, $password, $database);
+
+		$comment = $_POST['comments'];
+		$iduser = $_SESSION['id'];
+		$date = date("Y-m-d H:i:s");
+
+		$quest= "INSERT INTO commentaires (commentaire, id_utilisateur, date ) VALUES ('$comment','$iduser','$date')";
+
+		$req = mysqli_query($conn,$quest);
+
+		echo '<span id="datecomments">&#160;&#160; message sent ☑️&#160;&#160;</span>';
+
+	}
+}
+
+?>
+		<a href="livre-or.php" target="_top">go back to reviews </a>  &#160;&#160;
+		<a href="index.php" target="_top">go back to the home page </a>  &#160;&#160;
+	</div>
 </body>
 </html>
