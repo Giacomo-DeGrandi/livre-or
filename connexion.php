@@ -21,6 +21,10 @@ session_start();
 			</form>
 <?php
 
+if(isset($_SESSION['updated'])){
+	echo '<span> details updated succesfully </span>';
+}
+
 $servername = 'localhost';
 $username = 'root';
 $password = '';
@@ -28,39 +32,39 @@ $database = 'livreor';
 
 $conn = mysqli_connect($servername, $username, $password, $database);
 
-		$quest= "SELECT login, password, id FROM utilisateurs";
+if 	( ((isset($_POST['login']) and ($_POST['login']) != '')) and
+		((isset($_POST['password']) and ($_POST['password']) != '')) ){
+
+		$login=$_POST['login'];
+ 
+		$quest= "SELECT login, password FROM utilisateurs WHERE login = '$login' ";
 		$req= mysqli_query($conn,$quest);
 		$res=mysqli_fetch_all($req, MYSQLI_ASSOC);
 
-
-
-if 	( ((isset($_POST['login']) and ($_POST['login']) != '')) and
-		((isset($_POST['password']) and ($_POST['password']) != '')) ){
-		$usercheck=0;
 				foreach($res as $k => $v){
 					foreach($v as $k2 => $v2){
-						if($v2 === $_POST['login']){
+						if($v2 === $_POST['login']){ 
 							$usercheck++;
-						}
+						} else { echo '<span> wrong username</span>'; }
 						if ($v2 === $_POST['password']){
 									$usercheck++;
-						}
+
+								if($usercheck >= 2 ){
+
+								$_SESSION['user'] = $_POST['login'];
+								$_SESSION['connected'] = $_POST['login'];
+								$_SESSION['password'] = $_POST['password'];
+										
+										if(isset($_POST['submit'])){
+										
+											header( "Location: profil.php" );
+										}
+
+								} else { echo '<span class="ads">⚠️ invalid username or password </span>'; }
+
+						} else { echo '<span> wrong username</span>'; }
 					}
 				}
-				if($usercheck >= 2 ){
-
-							$_SESSION['user'] = $_POST['login'];
-							$_SESSION['connected'] = $_POST['login'];
-									
-									if(isset($_POST['submit'])){
-									
-										header( "Location: profil.php" );
-
-									}	
-
-				} else { echo '<span class="ads">⚠️ invalid username or password </span>'; }
-} elseif (isset($_SESSION['subscribe'])) {
-		echo '<span class="ads">Hi! '.'<h2>'. $_SESSION['subscribe'] .'</h2>'.' please insert your username and password to enter in your account </span>';
 } elseif (isset($_POST['submit'])) {
 	echo '<span class="ads">⚠️ please insert your username and password </span>'; 
 } else {

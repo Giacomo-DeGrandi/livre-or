@@ -157,3 +157,87 @@ footer {
 #indextitles {
 	color: var(--yellow);
 }
+
+/* profil */
+
+#mainwrapperprofil{
+	display: flex;
+}
+
+#sidediv {
+	background-color: var(--white);
+	flex: 1;
+}
+#pfp {
+	flex: 1;
+	background-color: var(--black);
+}
+
+#sidediv h1,h2 {
+	padding: 2vh;
+}
+
+#sidediv h1 {
+	font-size: 2em;
+}
+
+#usermaindiv {
+	flex: 4;
+	box-shadow: var(--mainshad);
+}
+
+#editinfo {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	flex: 2;
+	color: var(--black);
+	background-color: var(--white);
+	border-radius: 2vh;
+}
+
+#seediv {
+	background-color: var(--white);
+	display: flex;
+	height: 6vh;
+}
+#seediv span{
+	background-color: var(--white);
+		border: solid 1px var(--yellow);
+	border-radius: 1vh;
+	padding: 1vh;
+	color: var(--black);
+}
+
+#editinfo h4 {
+	background-color: var(--yellow) ;
+	border-radius: 2vh;
+	box-shadow: var(--mainshad);
+display: flex;
+text-align: center;
+padding: 4vh;
+}
+
+#editinfoform form {
+
+	box-shadow: var(--mainshad);
+	display: flex;
+	flex-direction: column;
+}
+
+#editandcomment {
+	display: flex;
+}
+
+#comments {
+	flex: 4;
+	background-color: var(--white);
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+#commentsform {
+	padding: 2vh;
+	box-shadow: var(--mainshad);
+}
