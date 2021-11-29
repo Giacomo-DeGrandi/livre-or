@@ -122,7 +122,7 @@ footer {
 }
 
 .buttons1:hover {
-	color: #800080;
+	color: var(--bkgcolor);
 	background-color: var(--yellow) ;
 	border-radius: 2vh;
 	padding: 1vh;
@@ -250,6 +250,10 @@ padding: 4vh;
 
 /*commentaire*/
 
+#reviewsmain h1{
+	color: var(--white);
+}
+
 #reviewformwrapper {
 	display: flex;
 	flex-direction: column;
@@ -274,4 +278,35 @@ padding: 4vh;
 	color: var(--white);
 	float: right;
 	padding: 0.5vh;
+}
+
+#goldentable {
+	box-shadow: var(--mainshad);
+	background-color: var(--white);
+}
+
+#goldentable table {
+	width: 100%;
+}
+
+#goldentable table tr {
+	padding: 3vh;
+		box-shadow: var(--mainshad);
+}
+
+#goldentable table tr td {
+	padding: 3vh;
+}
+
+#goldenform h4 {
+	color: var(--white);
+}
+
+#fastcomments {
+	padding: 2vh;
+	color: var(--white);
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
 }

@@ -163,6 +163,24 @@ if (isset($_POST['goldenbook'])){
 			</div>
 <?php
 
+if(isset($_POST['comments'])){
+	if(isset($_POST['submit'])){
+
+		$conn = mysqli_connect($servername, $username, $password, $database);
+
+		$comment = $_POST['comments'];
+		$iduser = $_SESSION['id'];
+		$date = date("Y-m-d H:i:s");
+
+		$quest= "INSERT INTO commentaires (commentaire, id_utilisateur, date ) VALUES ('$comment','$iduser','$date')";
+
+		$req = mysqli_query($conn,$quest);
+
+		echo '<span id="datecomments">&#160;&#160; message sent ☑️&#160;&#160;</span>';
+
+	}
+}
+
 ?>
 		</div>
 	</main>

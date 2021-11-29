@@ -8,7 +8,7 @@
 </head>
 <body>
 	<div id="indextitles">
-		<h1> Your personal team of web Dev</h1><br>
+		<h1> Musical golden-book</h1><br>
 		<a href="inscription.php" target="_top">SIGN UP </a>
 		<br><br>
 		<a href="connexion.php" target="_top">LOG IN</a>
