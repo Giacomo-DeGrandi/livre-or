@@ -10,7 +10,7 @@
 <main>
 	<div id="indextitles">
 		<h1> Hi! Welcome to goldenbook</h1><br>
-		<a href="inscription.php" target="_top">SIGN UP </a>
+		<a href="inscription.php" target="_top">SIGN UP </a> 
 		<br><br>
 		<a href="connexion.php" target="_top">LOG IN</a>
 		<br><br>

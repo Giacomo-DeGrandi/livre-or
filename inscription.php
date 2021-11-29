@@ -78,7 +78,7 @@ if  ((isset($_POST['login']) and ($_POST['login']) != '')){
 		</div>
 		</div>		<!--inscwrapperdiv -->
 		<footer>
-			<p>giditree<p>
+			<p>giditree<p> 
 				<a href="https://github.com/Giacomo-DeGrandi">mon github</a> 
 		</footer>
 	</main>

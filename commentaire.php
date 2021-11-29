@@ -63,7 +63,7 @@ if(isset($_POST['comments'])){
 		</form>
 <?php 
 
-if (isset($_POST['disconnect'])){
+if (isset($_POST['disconnect'])){ 
 
 	session_destroy();
 

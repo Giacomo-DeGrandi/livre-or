@@ -22,7 +22,7 @@ session_start();
 
 if (isset($_POST['disconnect'])){
 
-	session_destroy();
+	session_destroy(); 
 
 	header("Location: connexion.php");
 }

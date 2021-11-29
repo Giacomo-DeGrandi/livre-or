@@ -280,7 +280,7 @@ footer {
 #profiltable td {
 	padding: 1vh;
 }
-#profiltable th {
+#profiltable th { 
 	color: var(--white);
 	box-shadow: var(--buttonshad);
 	padding: 1vh;
