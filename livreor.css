@@ -8,7 +8,8 @@
 	--black: black;
 	--bkgcolor: #662d91;
 	--mainshad:rgba(17, 17, 26, 0.1) 0px 4px 16px, rgba(17, 17, 26, 0.05) 0px 8px 32px;
-	--buttonshad:rgba(0, 0, 0, 0.1) 0px 1px 3px 0px, rgba(0, 0, 0, 0.06) 0px 1px 2px 0px;;
+	--buttonshad:rgba(0, 0, 0, 0.1) 0px 1px 3px 0px, rgba(0, 0, 0, 0.06) 0px 1px 2px 0px;
+	--warning:  #FF6B6B;
 }
 
 body {
@@ -35,6 +36,25 @@ a:hover {
 input {
 	font-family: var(--mainfont);
 	padding: 0.8vh;
+}
+
+textarea {
+	font-family: var(--mainfont);
+	padding: 0.8vh;
+}
+
+select {
+	color: var(--bkgcolor);
+	background-color: var(--yellow) ;
+	border-radius: 2vh;
+	border: none;
+	box-shadow: var(--buttonshad);
+	font-family: var(--mainfont);
+}
+
+option {
+	font-family: var(--mainfont);
+	border: none;
 }
 
 .downlinks {
@@ -120,6 +140,22 @@ footer {
 	border: none;
 	box-shadow: var(--buttonshad);
 }
+.buttonsdisc {
+	color: black;
+	background-color: var(--warning) ;
+	border-radius: 2vh;
+	padding: 1vh;
+	border: none;
+	box-shadow: var(--buttonshad);
+}
+.buttonsdisc:hover {
+	color: white;
+	background-color: var(--warning) ;
+	border-radius: 2vh;
+	padding: 1vh;
+	border: none;
+	box-shadow: var(--mainshad);
+}
 
 .buttons1:hover {
 	color: var(--bkgcolor);
@@ -164,6 +200,8 @@ footer {
 
 /* profil */
 
+
+
 #mainwrapperprofil{
 	display: flex;
 }
@@ -171,10 +209,46 @@ footer {
 #sidediv {
 	background-color: var(--white);
 	flex: 1;
+	max-height: 30vh;
+	text-align: center;
 }
 #pfp {
 	flex: 1;
-	background-color: var(--black);
+	text-align: center;
+	max-height: 30vh;
+}
+
+.buttonscol {
+	font-size: 0.58em;
+	padding: 0.1;
+	float: left;
+	margin-right: 0.5vh;
+	z-index: 100;
+}
+
+#pfp select {
+	float: right;
+	margin-right: 1vh;
+}
+
+#pfp input {
+	color: var(--bkgcolor);
+	background-color: var(--yellow) ;
+	border-radius: 2vh;
+	border: none;
+	box-shadow: var(--buttonshad);
+	font-family: var(--mainfont);
+}
+
+#pfplogo{
+	text-shadow: -4px 4px 0px lightgrey,
+                 -8px 8px 0px darkgray,
+                 -12px 12px 0px gray;
+	font-size: 10em;
+	color: var(--white);
+	max-height: 30vh;
+	line-height: 1em;
+	margin-bottom: 1vh;
 }
 
 #sidediv h1,h2 {
@@ -186,18 +260,41 @@ footer {
 }
 
 #usermaindiv {
+	background-color: var(--white);
 	flex: 4;
 	box-shadow: var(--mainshad);
+	overflow: auto;
+	max-height: 40vh;
+}
+
+#profiltable {
+	background-color: var(--white);
+	width: 100%;
+	padding: 2vh;
+}
+
+#profiltable tr {
+	padding: 1vh;
+		box-shadow: var(--mainshad);
+}
+#profiltable td {
+	padding: 1vh;
+}
+#profiltable th {
+	color: var(--white);
+	box-shadow: var(--buttonshad);
+	padding: 1vh;
 }
 
 #editinfo {
 	display: flex;
 	flex-direction: column;
 	align-items: center;
+	justify-content: space-evenly;
 	flex: 2;
 	color: var(--black);
 	background-color: var(--white);
-	border-radius: 2vh;
+		box-shadow: var(--mainshad);
 	height: 100%;
 }
 
@@ -283,9 +380,12 @@ padding: 4vh;
 #goldentable {
 	box-shadow: var(--mainshad);
 	background-color: var(--white);
+	overflow: auto;
+	max-height: 50vh;
 }
 
 #goldentable table {
+	position: relative;
 	width: 100%;
 }
 
@@ -309,4 +409,9 @@ padding: 4vh;
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
+}
+
+#undercommentslinks {
+	display: flex;
+	justify-content: space-evenly;
 }

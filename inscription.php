@@ -30,20 +30,20 @@ $database = 'livreor';
 
 if  ((isset($_POST['login']) and ($_POST['login']) != '')){
 
-			//check if username already exists
+			// CHECK IF USER EXISTS
 
-			$quest = "SELECT login FROM utilisateurs "; 
+			$login = $_POST['login'];
+
+			$quest = "SELECT login FROM utilisateurs WHERE login = '$login' "; 
 
 			$req = mysqli_query($conn,$quest);
 
-			$res = mysqli_fetch_all($req, MYSQLI_ASSOC);
-
-			for($i=0; $i<isset($res[$i]); $i++){
-				foreach($res[$i] as $k => $v){	
-					if($v !== $_POST['login']){
-						if  (  	(isset($_POST['password']) and ($_POST['password']) != '') and
-								(isset($_POST['passwordconf']) and ($_POST['passwordconf']) != '') )  {	//**
-								if( $_POST['password'] == $_POST['passwordconf']){ 
+			if (mysqli_fetch_row($req) != 0) {
+				echo '<span class="ads">⚠️ this username already exists.<br/>Please choose another username</span>'; 
+			} else { 
+				if  (  	(isset($_POST['password']) and ($_POST['password']) != '') and
+						(isset($_POST['passwordconf']) and ($_POST['passwordconf']) != '') )  {				//**
+								if( $_POST['password'] === $_POST['passwordconf']){ 
 
 									$login = $_POST['login'];
 									$password = $_POST['password'];
@@ -60,12 +60,7 @@ if  ((isset($_POST['login']) and ($_POST['login']) != '')){
 
 									}	
 								} else { echo '<span class="ads">⚠️ error . passwords don\'t match</span>';}
-						}elseif (isset($_POST['submit'])){
-							echo '<span class="ads">⚠️ please insert your details </span>';
-						} else { echo '<span class="ads">⚠️ please insert your password </span>';
-						}
-					}	else {	echo '<span class="ads">⚠️ this username already exists.<br/>Please choose another username</span>'; }			//**if($v !== $_POST['l..
-				}
+				} else { echo '<span class="ads">⚠️ please insert your password </span>';	}
 			}
 } elseif (isset($_POST['submit'])){
 		echo '<span class="ads">⚠️ please insert your details </span>';

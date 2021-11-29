@@ -27,7 +27,7 @@ if(isset($_SESSION['user'])){
 				</textarea>
 				<input type="submit" name="send" value="submit" class="buttons1"><br><br>
 			</form>
-		<div>
+		<div id="undercommentslinks">
 <?php
 
 echo "<span id='datecomments'>today is the " . date("Y/m/d") . "</span><br>";
@@ -50,7 +50,7 @@ if(isset($_POST['comments'])){
 
 		$req = mysqli_query($conn,$quest);
 
-		echo '<span id="datecomments">&#160;&#160; message sent ☑️&#160;&#160;</span>';
+		echo '<span id="datecomments">&#160;&#160; review sent ☑️&#160;&#160;</span>';
 
 	}
 }
@@ -58,6 +58,18 @@ if(isset($_POST['comments'])){
 ?>
 		<a href="livre-or.php" target="_top">go back to reviews </a>  &#160;&#160;
 		<a href="index.php" target="_top">go back to the home page </a>  &#160;&#160;
+		<form action='' method="post">
+			<input type="submit" name="disconnect" value="&#160;disconnect from your account" class="buttonsdisc">
+		</form>
+<?php 
+
+if (isset($_POST['disconnect'])){
+
+	session_destroy();
+
+	header("Location: connexion.php");
+}
+?>
 	</div>
 </body>
 </html>

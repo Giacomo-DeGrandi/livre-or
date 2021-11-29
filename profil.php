@@ -26,9 +26,174 @@ if(isset($_SESSION['user'])){
 }
 ?>			
 			</div>
-			<div id="pfp">
+<?php 
+
+// PROFIL COLOR
+
+if(isset($_COOKIE['colors'])){
+	echo '<div id="pfp" style="background-color:'.$_COOKIE['colors'].' " >';
+
+} else { echo '<div id="pfp" style="background-color:var(--bkgcolor); z-index:3">'; }
+
+
+//PROFIL ICON
+
+echo '<span id="pfplogo">'.$_SESSION['user'][0].'</span>';
+
+?>
+				<br>
+				<form action="" method="post">
+					<select name="color">
+					  <option value="black">black</option>
+					  <option value="pink">pink</option>
+					  <option value="yellow">yellow</option>
+					  <option value="red">red</option>
+					  <option value="orange">orange</option>
+					  <option value="green">green</option>
+					  <option value="blue">blue</option>
+					</select>
+					<input type="submit" name="chcolor" value="change color" class="buttonscol">
+				</form>
+<?php
+
+if(isset($_POST['chcolor'])){	
+	if(isset($_POST['color'])){
+
+
+				$black= '#070D0B';
+				$pink= '#F31693';
+				$yellow= '#F6AE2D';
+				$red= '#C84630';
+				$orange= '#F26419';
+				$green= '#0EAD69';
+				$blue= '#0072BB';
+
+				setcookie('colors',$black,time()-3600000);
+				setcookie('colors',$pink,time()-3600000);
+				setcookie('colors',$yellow,time()-3600000);
+				setcookie('colors',$red,time()-3600000);
+				setcookie('colors',$orange,time()-3600000);
+				setcookie('colors',$green,time()-3600000);
+				setcookie('colors',$blue,time()-3600000);
+
+			if($_POST['color'] == 'black'){
+				setcookie('colors',$black,time()+3600000);
+				header('Location: profil.php');
+			}
+			if($_POST['color'] =='pink'){
+				setcookie('colors',$pink,time()+3600000);
+				header('Location: profil.php');
+			}
+			if($_POST['color'] =='yellow'){
+				setcookie('colors',$yellow,time()+3600000);
+				header('Location: profil.php');
+			}
+			if($_POST['color'] =='red'){
+				setcookie('colors',$red,time()+3600000);
+				header('Location: profil.php');
+			}
+			if($_POST['color'] =='orange'){
+				setcookie('colors',$orange,time()+3600000);
+				header('Location: profil.php');
+			}
+			if($_POST['color'] =='green'){
+				setcookie('colors',$green,time()+3600000);
+				header('Location: profil.php');
+			}
+			if($_POST['color'] =='blue'){
+				setcookie('colors',$blue,time()+3600000);
+				header('Location: profil.php');
+			}
+	}
+}
+
+
+?>				
 			</div>
 			<div id="usermaindiv">
+				<table id="profiltable">
+<?php 
+
+// MESSAGES TABLE
+	
+	echo '<tr><th style="background-color:var(--bkgcolor)">latest reviews sent</th></tr>';
+
+$servername = 'localhost';
+$username = 'root';
+$password = '';
+$database = 'livreor';
+
+$conn = mysqli_connect($servername, $username, $password, $database);
+
+		$login=$_SESSION['user'];
+		
+		$quest3= "SELECT id FROM utilisateurs WHERE login = '$login' ";
+
+		$req3 = mysqli_query($conn,$quest3);
+
+		$res3 = mysqli_fetch_all($req3);
+
+		foreach ($res3 as $k => $v){
+			foreach($v as $k2=>$v2){
+			}
+		}
+
+		// CHECK IF THERE ARE MESSAGES ALREADY ELSE GIVE A MESSAGE INSTEAD OF ERROR
+
+		$idmess = $v2;
+
+		$quest = "SELECT commentaire, date, id_utilisateur FROM commentaires WHERE id_utilisateur = '$idmess'  ORDER BY date DESC";	//display everything by date
+
+		$req = mysqli_query($conn,$quest);
+
+		$res = mysqli_fetch_all($req, MYSQLI_ASSOC);
+
+		if($res != 0){
+
+			for($i=0; $i<=isset($res[$i]); $i++){
+
+				echo '<tr>';
+
+				if(isset($res[$i])){ 
+					foreach ($res[$i] as $k => $v){
+						if($res[$i]['id_utilisateur'] !== $v){
+						
+						echo '<td>';
+						echo $v;
+							'</td>';
+						}
+					}
+
+					$id = $res[$i]['id_utilisateur'];
+
+					$quest2 = "SELECT login FROM utilisateurs WHERE id = '$id' ";	//associate  login name of another table
+
+					$req2=mysqli_query($conn,$quest2);
+
+					$res2=mysqli_fetch_all($req2, MYSQLI_ASSOC);
+
+					foreach ($res2 as $k2 => $v2){
+						foreach($v2 as $k3 => $v3){
+
+							if(isset($_COOKIE['colors'])){
+								echo '<th colspan="2" style="background-color:'.$_COOKIE['colors'].' " >';
+								echo $v3;
+								echo '</th>';								
+							} else {
+								echo '<th colspan="2" style="background-color:var(--bkgcolor)" >';
+								echo $v3;
+								echo '</th>';
+							}
+						}
+					}
+				} else {  echo '<tr><th>There are no reviews here yet</th></tr>'; }
+
+				echo '</tr>';
+			} 
+		}else { '<tr><th>There are no reviews here yet</th></tr>'; }
+
+?>
+				</table>
 			</div>
 		</div>
 		<div id="editandcomment">
@@ -39,7 +204,7 @@ if(isset($_SESSION['user'])){
 							<input type="submit" name="see" value="see your actual informations 👁 " class="buttons1">
 <?php
 
-//Check your infos
+//PERSONAL SETTINGS
 
 if(isset($_POST['see'])){
 	echo '<div id="seediv">';
@@ -67,12 +232,12 @@ if(isset($_POST['close'])){
 					</form>
 <?php 
 
-//Edit your infos
+//EDIT YOUR INFOS
 
 if(isset($_POST['edit'])){
 	echo '<div><form action="" method="post" id="editinfoform"><br><br>
 							<input type="text" name="username" placeholder="new username" ><br>
-							<input type="password" name="password2" placeholder="password"><br>
+							<input type="password" name="password2" placeholder="new password"><br>
 							<input type="text" name="oldusername" placeholder="old username" ><br>
 							<input type="submit" name="submit" value="update" class="buttons1"><br><br>
 							<input type="submit" name="clsedit" value="close edit" class="buttons1"><br><br>
@@ -96,15 +261,11 @@ if( ((isset($_POST['username']) and ($_POST['username']) != '')) and
 	((isset($_POST['oldusername']) and ($_POST['oldusername']) != ''))  ){
 
 			$login=$_POST['oldusername'];
-			$quest = "SELECT login FROM utilisateurs "; 
+			$quest = "SELECT login FROM utilisateurs WHERE login = '$login'"; 
 
 			$req = mysqli_query($conn,$quest);
 
-			$res = mysqli_fetch_all($req, MYSQLI_ASSOC);
-
-	for($i=0; $i<=isset($res[$i]); $i++){
-		foreach($res[$i] as $k => $v){
-			if($v !== $_POST['username']){
+		if(mysqli_fetch_row($req) != 0 ){
 
 				$username = $_POST['username'];
 				$password = $_POST['password2']; 
@@ -113,28 +274,13 @@ if( ((isset($_POST['username']) and ($_POST['username']) != '')) and
 
 				mysqli_query($conn,$quest2);
 
-				session_destroy();
+				$_SESSION['updated']= 1;
 
-				$_SESSION['updated']=$_POST['username'];
+				header( "Location: profil.php" );
 
-				header( "Location: connexion.php" );
-
-			} else { echo '<span>this username already exists</span>';} 
-		}
-	} 
+		} else { echo '<span>this username already exists</span>';} 
 }
-?>
-		<form action='' method="post">
-			<input type="submit" name="disconnect" value="&#160;disconnect from your account" class="buttons1">
-		</form>
-<?php 
 
-if (isset($_POST['disconnect'])){
-
-	session_destroy();
-
-	header("Location: connexion.php");
-}
 ?>
 		<form action='' method="post">
 			<input type="submit" name="goldenbook" value="&#160;&#160;&#160;go to the reviews page&#160;&#160;&#160;&#160;&#160;&#160;" class="buttons1">
@@ -149,11 +295,24 @@ if (isset($_POST['goldenbook'])){
 }
 
 ?>
+		<form action='' method="post">
+			<input type="submit" name="disconnect" value="&#160;disconnect" class="buttonsdisc">
+		</form>
+<?php 
+
+if (isset($_POST['disconnect'])){
+
+	session_destroy();
+
+	header("Location: connexion.php");
+}
+
+?>
 				</div>
 			</div>
 			<div id="comments">
 				<div id="formtext">
-					<h2>send a comment to the golden-book from here</h2>
+					<h2>send a review from here</h2>
 					<form action='' method='post' id="commentsform">
 						<textarea id="comments" name="comments" rows="7" cols="100">
 						</textarea>
@@ -176,7 +335,11 @@ if(isset($_POST['comments'])){
 
 		$req = mysqli_query($conn,$quest);
 
-		echo '<span id="datecomments">&#160;&#160; message sent ☑️&#160;&#160;</span>';
+		echo '<span id="datecomments">&#160;&#160; review sent ☑️&#160;&#160;</span>';
+
+		header('Location: profil.php');
+
+		$_SESSION['sentprofil'] = 1 ;
 
 	}
 }

@@ -14,11 +14,16 @@ session_start();
 	<header>
 			<a href="index.php" target="_top">go back to the home page </a>  &#160;&#160;&#160;&#160;
 			<a href="connexion.php" target="_top">log in</a> &#160;&#160;&#160;&#160;
+			<form action='' method="post">
+			<input type="submit" name="disconnect" value="&#160;disconnect from your account" class="buttonsdisc">
+		</form>
 	</header>
 <?php
 
 if (isset($_POST['disconnect'])){
+
 	session_destroy();
+
 	header("Location: connexion.php");
 }
 
@@ -85,10 +90,10 @@ if(isset($_SESSION['connected'])){
 
 	echo '<form action="" method="post" id="goldenform">';
 	echo '<h4> username:'. ' ' . $_SESSION['connected'].'</h4>';
-	echo '<input type="submit" name="tocomments" value="go to comment form" class="buttons1">
-			<input type="submit" name="fastcomments" value="send a comment from here" class="buttons1">
+	echo '<input type="submit" name="tocomments" value="go to review form" class="buttons1">
+			<input type="submit" name="fastcomments" value="send a review from here" class="buttons1">
 		</form>';
-} else { echo '<br><br><span class="ads"> please connect to leave a comment </span>'; }
+} else { echo '<br><br><span class="ads"> please connect to leave a review </span>'; }
 
 if(isset($_POST['tocomments'])){
 	$_SESSION['user']=$_SESSION['connected'];
@@ -96,7 +101,7 @@ if(isset($_POST['tocomments'])){
 }
 if(isset($_POST['fastcomments'])){
 	echo '<div id="fastcomments">';
-	echo '<h4>write here your comment</h4>';
+	echo '<h4>write here your review</h4>';
 	echo '<form action="" method="post">';
 	echo '<input type="submit" name="sendfast" value="send" class="buttons1">';
 	echo '<textarea id="fastcommentsarea" name="fastcommentsarea" rows="4" cols="100"></textarea>';;
@@ -108,7 +113,6 @@ if(isset($_SESSION['connected'])){
 	if(isset($_POST['fastcommentsarea'])){
 		if(isset($_POST['sendfast'])){
 				
-				echo 'ok';
 				$servername = 'localhost';
 				$username = 'root';
 				$password = '';
@@ -123,13 +127,19 @@ if(isset($_SESSION['connected'])){
 				$quest= "INSERT INTO commentaires (commentaire, id_utilisateur, date ) VALUES ('$comment','$iduser','$date')";
 		
 				$req = mysqli_query($conn,$quest);
+
+				header('Location: livre-or.php');
 		
-				echo '<span id="datecomments">&#160;&#160; message sent ☑️&#160;&#160;</span>';
+				echo '<span id="datecomments">&#160;&#160; review sent ☑️&#160;&#160;</span>';
 		}
 	}
 }
 
 ?>
+		<footer>
+			<p>giditree<p>
+				<a href="https://github.com/Giacomo-DeGrandi">mon github</a> 
+		</footer>
 </main>
 </body>
 </html>
