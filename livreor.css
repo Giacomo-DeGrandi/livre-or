@@ -222,8 +222,8 @@ footer {
 	font-size: 0.58em;
 	padding: 0.1;
 	float: left;
-	margin-right: 0.5vh;
 	z-index: 100;
+	margin-left: 0.5vh;
 }
 
 #pfp select {
@@ -294,7 +294,7 @@ footer {
 	flex: 2;
 	color: var(--black);
 	background-color: var(--white);
-		box-shadow: var(--mainshad);
+	box-shadow: var(--mainshad);
 	height: 100%;
 }
 
@@ -312,6 +312,7 @@ footer {
 }
 
 #editinfo h4 {
+	color: var(--white);
 	background-color: var(--yellow) ;
 	border-radius: 2vh;
 	box-shadow: var(--mainshad);

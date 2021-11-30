@@ -59,7 +59,6 @@ echo '<span id="pfplogo">'.$_SESSION['user'][0].'</span>';
 if(isset($_POST['chcolor'])){	
 	if(isset($_POST['color'])){
 
-
 				$black= '#070D0B';
 				$pink= '#F31693';
 				$yellow= '#F6AE2D';
@@ -186,11 +185,11 @@ $conn = mysqli_connect($servername, $username, $password, $database);
 							}
 						}
 					}
-				} else {  echo '<tr><th>There are no reviews here yet</th></tr>'; }
+				} else {  echo '<tr><th style="background-color:var(--bkgcolor)">There are no reviews here yet</th></tr>'; }
 
 				echo '</tr>';
 			} 
-		}else { '<tr><th>There are no reviews here yet</th></tr>'; }
+		}else { '<tr><th style="background-color:var(--bkgcolor)">There are no reviews here yet</th></tr>'; }
 
 ?>
 				</table>
@@ -199,7 +198,14 @@ $conn = mysqli_connect($servername, $username, $password, $database);
 		<div id="editandcomment">
 			<div id="persinfo">
 				<div id="editinfo">
-					<h4>Personal Settings &#160;&#160;&#160;&#160;&#160; 🛠️</h4>
+<?php
+
+if(isset($_COOKIE['colors'])){
+	echo '<h4 style="background-color:'.$_COOKIE['colors'].' " >Personal Settings &#160;&#160;&#160;&#160;&#160; 🛠️</h4>';
+
+} else { echo '<h4 style="background-color:var(--bkgcolor)" >Personal Settings &#160;&#160;&#160;&#160;&#160; 🛠️</h4>'; }
+
+?>
 					<form action='' method='post' id="editinfoform">
 							<input type="submit" name="see" value="see your actual informations 👁 " class="buttons1">
 <?php
