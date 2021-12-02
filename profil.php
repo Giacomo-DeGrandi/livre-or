@@ -130,16 +130,11 @@ $conn = mysqli_connect($servername, $username, $password, $database);
 
 		$req3 = mysqli_query($conn,$quest3);
 
-		$res3 = mysqli_fetch_all($req3);
+		$row = mysqli_fetch_row($req3);
 
-		foreach ($res3 as $k => $v){
-			foreach($v as $k2=>$v2){
-			}
-		}
+		// CHECK IF THERE ARE MESSAGES ALREADY, ELSE GIVE A MESSAGE INSTEAD OF A PHP ERROR
 
-		// CHECK IF THERE ARE MESSAGES ALREADY ELSE GIVE A MESSAGE INSTEAD OF ERROR
-
-		$idmess = $v2;
+		$idmess = $row[0];
 
 		$quest = "SELECT commentaire, date, id_utilisateur FROM commentaires WHERE id_utilisateur = '$idmess'  ORDER BY date DESC";	//display everything by date
 
@@ -183,8 +178,10 @@ $conn = mysqli_connect($servername, $username, $password, $database);
 								echo $v3;
 								echo '</th>';
 							}
+
 						}
 					}
+
 				} else {  echo '<tr><th style="background-color:var(--bkgcolor)">There are no reviews here yet</th></tr>'; }
 
 				echo '</tr>';
@@ -211,6 +208,7 @@ if(isset($_COOKIE['colors'])){
 <?php
 
 //PERSONAL SETTINGS
+$close = 'close' ;
 
 if(isset($_POST['see'])){
 	echo '<div id="seediv">';
@@ -218,10 +216,10 @@ if(isset($_POST['see'])){
 	if(isset($_SESSION['password'])){
 		echo '<span>'.$_SESSION['password'].'</span><br/>';
 		echo '</div>';
-		echo '<input type="submit" name="close" value="close" class="buttons1"><br><br>';
+		echo '<input type="submit" name="close" value="'.htmlspecialchars($close).'" class="buttons1"><br><br>';
 	} else {
 		echo '<span>⚠️password </span>';
-		echo '<input type="submit" name="close" value="close" class="buttons1">';
+		echo '<input type="submit" name="close" value="'.htmlspecialchars($close).'" class="buttons1">';
 		echo '</div>';
 	}
 } 
@@ -273,16 +271,20 @@ if( ((isset($_POST['username']) and ($_POST['username']) != '')) and
 
 		if(mysqli_fetch_row($req) != 0 ){
 
-				$username = $_POST['username'];
-				$password = $_POST['password2']; 
+				$username = mysqli_real_escape_string($conn,$_POST['username']);
+				$password = mysqli_real_escape_string($conn,$_POST['password2']); 
 
 				$quest2= "UPDATE utilisateurs SET login = '$username', password = '$password' WHERE login = '$login' ";
 
 				mysqli_query($conn,$quest2);
 
+				$_SESSION['password'] = $password;
+
+				$_SESSION['user'] = $username;
+
 				$_SESSION['updated']= 1;
 
-				header( "Location: profil.php" );
+				header( "Location: profil.php" );			///
 
 		} else { echo '<span>this username already exists</span>';} 
 }
@@ -333,7 +335,7 @@ if(isset($_POST['comments'])){
 
 		$conn = mysqli_connect($servername, $username, $password, $database);
 
-		$comment = $_POST['comments'];
+		$comment = mysqli_real_escape_string($_POST['comments']);
 		$iduser = $_SESSION['id'];
 		$date = date("Y-m-d H:i:s");
 

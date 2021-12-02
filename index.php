@@ -14,19 +14,7 @@
 		<br><br>
 		<a href="connexion.php" target="_top">LOG IN</a>
 		<br><br>
-		<form action='' method="post">
-			<input type="submit" name="goldenbook" value="&#160;&#160;&#160;go to the reviews page&#160;&#160;&#160;&#160;&#160;&#160;" class="buttons1">
-		</form>
-<?php 
-
-if (isset($_POST['goldenbook'])){
-
-	$_SESSION['connected'] = $_SESSION['user'];
-
-	header("Location: livre-or.php");
-}
-
-?>
+		<a href="livre-or.php" target="_top"> go to the reviews page </a>
 		<br><br><br><br>
 	</div>
 		<footer>

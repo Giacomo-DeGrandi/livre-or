@@ -45,9 +45,8 @@ if  ((isset($_POST['login']) and ($_POST['login']) != '')){
 						(isset($_POST['passwordconf']) and ($_POST['passwordconf']) != '') )  {				//**
 								if( $_POST['password'] === $_POST['passwordconf']){ 
 
-									$login = $_POST['login'];
-									$password = $_POST['password'];
-
+									$login = mysqli_real_escape_string($_POST['login']);		// sur les injection SQL et saniter les inputs
+									$password = mysqli_real_escape_string($_POST['password']);	// https://www.slideshare.net/billkarwin/sql-injection-myths-and-fallacies?from_action=save
 									$quest2= " INSERT INTO utilisateurs( login, password) VALUES ('$login','$password') ";
 
 									$req2 = mysqli_query($conn,$quest2);
