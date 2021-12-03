@@ -48,38 +48,36 @@ if (isset($_POST['disconnect'])){
 
 		$res = mysqli_fetch_all($req, MYSQLI_ASSOC);
 
-		for($i=0; $i<=isset($res[$i]); $i++){
+		if(!empty($res)){ 		// je pose ce condition parce-que si jamais il y à pas de commentaire le browser donne erreur php										// comme quoi $res c'est faux et tout mon tableau c'est en defaux
+			for($i=0; $i<=isset($res[$i]); $i++){
+				echo '<tr>';
 
-			echo '<tr>';
-
-			foreach ($res[$i] as $k => $v){
-				if($res[$i]['id_utilisateur'] !== $v){
-				
-				echo '<td>';
-				echo $v;
-					'</td>';
+				foreach ($res[$i] as $k => $v){
+					if($res[$i]['id_utilisateur'] !== $v){				
+					echo '<td>';
+					echo $v;
+						'</td>';
+					}
 				}
-			}
 
-			$id = $res[$i]['id_utilisateur'];
+				$id = $res[$i]['id_utilisateur'];
 
-			$quest2 = "SELECT login FROM utilisateurs WHERE id = '$id' ";	//associate  login name of another table
+				$quest2 = "SELECT login FROM utilisateurs WHERE id = '$id' ";	//associate  login name of another table
 
-			$req2=mysqli_query($conn,$quest2);
+				$req2=mysqli_query($conn,$quest2);
 
-			$res2=mysqli_fetch_all($req2, MYSQLI_ASSOC);
+				$res2=mysqli_fetch_all($req2, MYSQLI_ASSOC);
 
-			foreach ($res2 as $k2 => $v2){
-				foreach($v2 as $k3 => $v3){
-				
-					echo '<th colspan="2">';
-					echo $v3;
-					echo '</th>';
+				foreach ($res2 as $k2 => $v2){
+					foreach($v2 as $k3 => $v3){				
+						echo '<th colspan="2">';
+						echo $v3;
+						echo '</th>';
+					}
 				}
+				echo '</tr>';
 			}
-
-			echo '</tr>';
-		}
+		} 
 
 ?>
 			</table>
@@ -112,15 +110,8 @@ if(isset($_POST['fastcomments'])){
 if(isset($_SESSION['connected'])){
 	if(isset($_POST['fastcommentsarea'])){
 		if(isset($_POST['sendfast'])){
-				
-				$servername = 'localhost';
-				$username = 'root';
-				$password = '';
-				$database = 'livreor';
 		
-				$conn = mysqli_connect($servername, $username, $password, $database);
-		
-				$comment = $_POST['fastcommentsarea'];
+				$comment = mysqli_real_escape_string($conn,$_POST['fastcommentsarea']);
 				$iduser = $_SESSION['id'];
 				$date = date("Y-m-d H:i:s");
 		

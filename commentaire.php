@@ -17,8 +17,8 @@ session_start();
 
 if(isset($_SESSION['user'])){
 	echo '<h2> hi '. $_SESSION['user'].'</h2>';
-} else { header('Location: connexion.php');
-}
+} else { header('Location: connexion.php');			// si l'utilisateur accede pour quelque obscur raison ici sans etre en session 
+}													// je le renvoi à se connectre
 
 ?>
 			<h4>write your review here</h4>
@@ -42,7 +42,7 @@ if(isset($_POST['comments'])){
 
 		$conn = mysqli_connect($servername, $username, $password, $database);
 
-		$comment = $_POST['comments'];
+		$comment = mysqli_real_escape_string($conn,$_POST['comments']);
 		$iduser = $_SESSION['id'];
 		$date = date("Y-m-d H:i:s");
 

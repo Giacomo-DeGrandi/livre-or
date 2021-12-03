@@ -32,7 +32,9 @@ if  ((isset($_POST['login']) and ($_POST['login']) != '')){
 
 			// CHECK IF USER EXISTS
 
-			$login = $_POST['login'];
+			$loginbrut= htmlspecialchars($_POST['login']);
+
+			$login = mysqli_real_escape_string($conn,$loginbrut);
 
 			$quest = "SELECT login FROM utilisateurs WHERE login = '$login' "; 
 
@@ -45,13 +47,22 @@ if  ((isset($_POST['login']) and ($_POST['login']) != '')){
 						(isset($_POST['passwordconf']) and ($_POST['passwordconf']) != '') )  {				//**
 								if( $_POST['password'] === $_POST['passwordconf']){ 
 
-									$login = mysqli_real_escape_string($_POST['login']);		// sur les injection SQL et saniter les inputs
-									$password = mysqli_real_escape_string($_POST['password']);	// https://www.slideshare.net/billkarwin/sql-injection-myths-and-fallacies?from_action=save
+									$loginbrut=htmlspecialchars($_POST['login']);		// my security for XSS 
+									$passwordbrut=htmlspecialchars($_POST['password']);
+
+									// une petit point sur la securité ---> ALors, je me demande si, par example, 
+									// en utilisant un regex() pour excluder ou un preg_match pour detecter des scripts
+									// je pourrait etre plus sûr sur ce que l'utilisateur insert dans les forms (ae. whitelisté toutes 
+									// les possibilitées d'input de un utilisateur ou lieux d'excluder seulement certaines.
+
+									$login = mysqli_real_escape_string($conn,$loginbrut);		// my security for SQL Inj
+									$password = mysqli_real_escape_string($conn,$passwordbrut);	
+
 									$quest2= " INSERT INTO utilisateurs( login, password) VALUES ('$login','$password') ";
 
 									$req2 = mysqli_query($conn,$quest2);
 
-									$_SESSION['subscribe']= $_POST['login'];
+									$_SESSION['subscribe']= $loginbrut;
 
 									if(isset($_POST['submit'])){
 									

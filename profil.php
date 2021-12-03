@@ -238,9 +238,11 @@ if(isset($_POST['close'])){
 
 //EDIT YOUR INFOS
 
+
+
 if(isset($_POST['edit'])){
 	echo '<div><form action="" method="post" id="editinfoform"><br><br>
-							<input type="text" name="username" placeholder="new username" ><br>
+							<input type="text" name="username" placeholder="new username"><br>
 							<input type="password" name="password2" placeholder="new password"><br>
 							<input type="text" name="oldusername" placeholder="old username" ><br>
 							<input type="submit" name="submit" value="update" class="buttons1"><br><br>
@@ -248,15 +250,7 @@ if(isset($_POST['edit'])){
 					</form></div>';
 }
 
-if(isset($_POST['close'])){
-	$_POST['edit']==null;
-	header('Location: profil.php');
-}
 
-$servername = 'localhost';
-$username = 'root';
-$password = '';
-$database = 'livreor';
 
 $conn = mysqli_connect($servername, $username, $password, $database);
 
@@ -264,15 +258,23 @@ if( ((isset($_POST['username']) and ($_POST['username']) != '')) and
 	((isset($_POST['password2']) and ($_POST['password2']) != '')) and 
 	((isset($_POST['oldusername']) and ($_POST['oldusername']) != ''))  ){
 
-			$login=$_POST['oldusername'];
+		if(isset($_POST['submit'])){
+
+			$loginbrut=htmlspecialchars($_POST['oldusername']);
+
+			$login = mysqli_real_escape_string($conn,$loginbrut);
+
 			$quest = "SELECT login FROM utilisateurs WHERE login = '$login'"; 
 
 			$req = mysqli_query($conn,$quest);
 
-		if(mysqli_fetch_row($req) != 0 ){
+			if(mysqli_fetch_row($req) != 0 ){
 
-				$username = mysqli_real_escape_string($conn,$_POST['username']);
-				$password = mysqli_real_escape_string($conn,$_POST['password2']); 
+				$usernamebrut= htmlspecialchars($_POST['username']);
+				$passwordbrut= htmlspecialchars($_POST['password2']);
+
+				$username = mysqli_real_escape_string($conn,$usernamebrut);
+				$password = mysqli_real_escape_string($conn,$passwordbrut); 
 
 				$quest2= "UPDATE utilisateurs SET login = '$username', password = '$password' WHERE login = '$login' ";
 
@@ -282,12 +284,15 @@ if( ((isset($_POST['username']) and ($_POST['username']) != '')) and
 
 				$_SESSION['user'] = $username;
 
-				$_SESSION['updated']= 1;
-
 				header( "Location: profil.php" );			///
 
-		} else { echo '<span>this username already exists</span>';} 
-}
+			} else { echo '<span>this username already exists</span>';} 
+		} elseif (isset($_POST['clsedit'])){
+			if(isset($_POST['edit'])){
+				$_POST['edit']= null;
+			}
+		}
+} 
 
 ?>
 		<form action='' method="post">
@@ -335,7 +340,9 @@ if(isset($_POST['comments'])){
 
 		$conn = mysqli_connect($servername, $username, $password, $database);
 
-		$comment = mysqli_real_escape_string($_POST['comments']);
+		$commentbrut = htmlspecialchars($_POST['comments']);
+
+		$comment = mysqli_real_escape_string($conn,$commentbrut);
 		$iduser = $_SESSION['id'];
 		$date = date("Y-m-d H:i:s");
 
@@ -348,7 +355,7 @@ if(isset($_POST['comments'])){
 		header('Location: profil.php');
 
 		$_SESSION['sentprofil'] = 1 ;
-
+		
 	}
 }
 

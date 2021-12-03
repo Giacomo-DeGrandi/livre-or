@@ -24,10 +24,6 @@ session_start();
 			</form>
 <?php
 
-if(isset($_SESSION['updated'])){
-	echo '<span> details updated succesfully </span>';
-}
-
 $servername = 'localhost';
 $username = 'root';
 $password = '';
@@ -38,7 +34,10 @@ $conn = mysqli_connect($servername, $username, $password, $database);
 if 	( ((isset($_POST['login']) and ($_POST['login']) != '')) and
 		((isset($_POST['password']) and ($_POST['password']) != '')) ){
 
-		$login=$_POST['login'];
+		$loginbrut=htmlspecialchars($_POST['login']);		// my security for XSS
+		$password=htmlspecialchars($_POST['password']);
+
+		$login=mysqli_real_escape_string($conn,$loginbrut);		// my security for SQL Inj
  
 		$quest= "SELECT login, password, id FROM utilisateurs WHERE login = '$login' ";
 		$req= mysqli_query($conn,$quest);
@@ -46,18 +45,18 @@ if 	( ((isset($_POST['login']) and ($_POST['login']) != '')) and
 
 		$usercheck=0;
 				foreach($res as $k => $v){
-						if($v['login'] === $_POST['login']){ 
+						if($v['login'] === $loginbrut){ 
 							$usercheck++;
 						} else { echo '<span> wrong username </span>';}
-						if ($v['password'] === $_POST['password']){
+						if ($v['password'] === $password){
 									$usercheck++;
 
 								if($usercheck >= 2 ){
 
 								$_SESSION['id'] = $v['id'];
-								$_SESSION['user'] = $_POST['login'];
-								$_SESSION['connected'] = $_POST['login'];
-								$_SESSION['password'] = $_POST['password'];
+								$_SESSION['user'] = $loginbrut;
+								$_SESSION['connected'] = $loginbrut;
+								$_SESSION['password'] = $password;
 										
 										if(isset($_POST['submit'])){
 										
