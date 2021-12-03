@@ -1,0 +1,418 @@
+@import url('https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;800&display=swap');
+
+:root {
+	--mainfont: 'Heebo', sans-serif;
+	--fontcolgen:  #EAEAEA;
+	--yellow:  #F5D547;
+	--white: white;
+	--black: black;
+	--bkgcolor: #662d91;
+	--mainshad:rgba(17, 17, 26, 0.1) 0px 4px 16px, rgba(17, 17, 26, 0.05) 0px 8px 32px;
+	--buttonshad:rgba(0, 0, 0, 0.1) 0px 1px 3px 0px, rgba(0, 0, 0, 0.06) 0px 1px 2px 0px;
+	--warning:  #FF6B6B;
+}
+
+body {
+	font-family: var(--mainfont);
+	background-color: var(--bkgcolor);
+	color: var(--black);
+	padding: 0.5vh;
+}
+
+a {
+	text-decoration: none;
+	color: var(--white);
+	padding: 0.5vh;
+}
+
+a:hover {
+	box-shadow: var(--mainshad);
+	text-decoration: none;
+	color: var(--black);
+	background-color: var(--yellow) ;
+	border-radius: 2vh;
+}
+
+input {
+	font-family: var(--mainfont);
+	padding: 0.8vh;
+}
+
+textarea {
+	font-family: var(--mainfont);
+	padding: 0.8vh;
+}
+
+select {
+	color: var(--bkgcolor);
+	background-color: var(--yellow) ;
+	border-radius: 2vh;
+	border: none;
+	box-shadow: var(--buttonshad);
+	font-family: var(--mainfont);
+}
+
+option {
+	font-family: var(--mainfont);
+	border: none;
+}
+
+.downlinks {
+	float: bottom;
+}
+
+#inscwrapper {
+	display: flex;
+	align-items: center;
+	flex-direction: column;
+}
+
+#subs { 
+	box-shadow: var(--mainshad);
+	background-color: var(--white);
+	border: solid 1px whitesmoke ;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
+	border-radius: 1vh;
+	padding: 2vh;
+	width: 30%;
+}
+
+#subs h1 {
+	color: var(--black);
+}
+
+#subs input {
+	padding: 0.8vh;
+		box-shadow: var(--buttonshad);
+
+}
+
+header{
+	display: flex;
+	float: right;
+}
+
+footer {
+	display: flex;
+	float: right;
+	justify-content: flex-end;
+	align-items: flex-end;
+	padding: 1vh;
+	border-radius: 1vh;
+	background-color: var(--yellow);
+	color: var(--bkgcolor);
+	font-size: 0.8em;
+}
+
+#connwrapper {
+	display: flex;
+	align-items: center;
+	flex-direction: column;
+	justify-content: center;
+}
+
+#connbody {
+	background-color: var(--white);
+	border: solid 1px whitesmoke ;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
+	border-radius: 1vh;
+	padding: 2vh;
+	width: 30%;
+}
+
+#connbody a {
+	margin-top: 1vh;
+	color: black;
+	box-shadow: var(--buttonshad);
+}
+
+.buttons1 {
+	color: black;
+	background-color: var(--yellow) ;
+	border-radius: 2vh;
+	padding: 1vh;
+	border: none;
+	box-shadow: var(--buttonshad);
+}
+.buttonsdisc {
+	color: black;
+	background-color: var(--warning) ;
+	border-radius: 2vh;
+	padding: 1vh;
+	border: none;
+	box-shadow: var(--buttonshad);
+}
+.buttonsdisc:hover {
+	color: white;
+	background-color: var(--warning) ;
+	border-radius: 2vh;
+	padding: 1vh;
+	border: none;
+	box-shadow: var(--mainshad);
+}
+
+.buttons1:hover {
+	color: var(--bkgcolor);
+	background-color: var(--yellow) ;
+	border-radius: 2vh;
+	padding: 1vh;
+	border: none;
+	box-shadow: var(--mainshad);
+}
+
+.hiddenbuttons {
+
+	color: black;
+	background-color: var(--yellow) ;
+	border-radius: 2vh;
+	padding: 1vh;
+	border: none;
+	box-shadow: var(--buttonshad);
+}
+
+.hiddenbuttons:hover {
+	color: #800080;
+	background-color: var(--yellow) ;
+	border-radius: 2vh;
+	padding: 1vh;
+	border: none;
+	box-shadow: var(--mainshad);
+}
+
+
+.ads {
+	border: solid 1px var(--yellow);
+	border-radius: 1vh;
+	padding: 1vh;
+	color: var(--black);
+	margin-top: 1vh;
+}
+
+#indextitles {
+	color: var(--yellow);
+}
+
+/* profil */
+
+
+
+#mainwrapperprofil{
+	display: flex;
+}
+
+#sidediv {
+	background-color: var(--white);
+	flex: 1;
+	max-height: 30vh;
+	text-align: center;
+}
+#pfp {
+	flex: 1;
+	text-align: center;
+	max-height: 30vh;
+}
+
+.buttonscol {
+	font-size: 0.58em;
+	padding: 0.1;
+	float: left;
+	z-index: 100;
+	margin-left: 0.5vh;
+}
+
+#pfp select {
+	float: right;
+	margin-right: 1vh;
+}
+
+#pfp input {
+	color: var(--bkgcolor);
+	background-color: var(--yellow) ;
+	border-radius: 2vh;
+	border: none;
+	box-shadow: var(--buttonshad);
+	font-family: var(--mainfont);
+}
+
+#pfplogo{
+	text-shadow: -4px 4px 0px lightgrey,
+                 -8px 8px 0px darkgray,
+                 -12px 12px 0px gray;
+	font-size: 10em;
+	color: var(--white);
+	max-height: 30vh;
+	line-height: 1em;
+	margin-bottom: 1vh;
+}
+
+#sidediv h1,h2 {
+	padding: 2vh;
+}
+
+#sidediv h1 {
+	font-size: 2em;
+}
+
+#usermaindiv {
+	background-color: var(--white);
+	flex: 4;
+	box-shadow: var(--mainshad);
+	overflow: auto;
+	max-height: 40vh;
+}
+
+#profiltable {
+	background-color: var(--white);
+	width: 100%;
+	padding: 2vh;
+}
+
+#profiltable tr {
+	padding: 1vh;
+		box-shadow: var(--mainshad);
+}
+#profiltable td {
+	padding: 1vh;
+}
+#profiltable th { 
+	color: var(--white);
+	box-shadow: var(--buttonshad);
+	padding: 1vh;
+}
+
+#editinfo {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: space-evenly;
+	flex: 2;
+	color: var(--black);
+	background-color: var(--white);
+	box-shadow: var(--mainshad);
+	height: 100%;
+}
+
+#seediv {
+	background-color: var(--white);
+	display: flex;
+	height: 6vh;
+}
+#seediv span{
+	background-color: var(--white);
+		border: solid 1px var(--yellow);
+	border-radius: 1vh;
+	padding: 1vh;
+	color: var(--black);
+}
+
+#editinfo h4 {
+	color: var(--white);
+	background-color: var(--yellow) ;
+	border-radius: 2vh;
+	box-shadow: var(--mainshad);
+display: flex;
+text-align: center;
+padding: 4vh;
+}
+
+#editinfoform form {
+
+	box-shadow: var(--mainshad);
+	display: flex;
+	flex-direction: column;
+}
+
+#editandcomment {
+	display: flex;
+}
+
+#comments {
+	flex: 4;
+	background-color: var(--white);
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+#commentsform {
+	padding: 2vh;
+	box-shadow: var(--mainshad);
+}
+
+
+/*commentaire*/
+
+#reviewsmain h1{
+	color: var(--white);
+}
+
+#reviewformwrapper {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+#reviewformwrapper a {
+	color: var(--black);
+}
+
+#reviewform {
+	background-color: var(--white);
+	padding: 3vh;
+	border-radius: 2vh;
+	box-shadow: var(--mainshad);
+}
+
+#datecomments {
+		border-radius: 2vh;
+	box-shadow: var(--mainshad);
+	background-color: var(--bkgcolor);
+	color: var(--white);
+	float: right;
+	padding: 0.5vh;
+}
+
+#goldentable {
+	box-shadow: var(--mainshad);
+	background-color: var(--white);
+	overflow: auto;
+	max-height: 50vh;
+}
+
+#goldentable table {
+	position: relative;
+	width: 100%;
+}
+
+#goldentable table tr {
+	padding: 3vh;
+		box-shadow: var(--mainshad);
+}
+
+#goldentable table tr td {
+	padding: 3vh;
+}
+
+#goldenform h4 {
+	color: var(--white);
+}
+
+#fastcomments {
+	padding: 2vh;
+	color: var(--white);
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}
+
+#undercommentslinks {
+	display: flex;
+	justify-content: space-evenly;
+}
