@@ -264,8 +264,8 @@ if( ((isset($_POST['username']) and ($_POST['username']) != '')) and
 
 			$req = mysqli_query($conn,$quest);
 
-			if(mysqli_fetch_row($req) != 0 ){
-
+			if(mysqli_fetch_row($req) != 0 ){ echo '<span>this username already exists</span>';
+			} else { 
 				$usernamebrut= htmlspecialchars($_POST['username']);
 				$passwordbrut= htmlspecialchars($_POST['password2']);
 
@@ -280,10 +280,8 @@ if( ((isset($_POST['username']) and ($_POST['username']) != '')) and
 
 				$_SESSION['user'] = $username;
 
-				header( "Location: profil.php" );			///
-
-			} else { echo '<span>this username already exists</span>';} 
-		} elseif (isset($_POST['clsedit'])){
+				header( "Location: profil.php" );} 
+			} elseif (isset($_POST['clsedit'])){
 			if(isset($_POST['edit'])){
 				$_POST['edit']= null;
 			}
