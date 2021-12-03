@@ -51,7 +51,7 @@ if  ((isset($_POST['login']) and ($_POST['login']) != '')){
 									$passwordbrut=htmlspecialchars($_POST['password']);
 
 									// une petit point sur la securité ---> ALors, je me demande si, par example, 
-									// en utilisant un regex() pour excluder ou un preg_match pour detecter des scripts
+									// en utilisant un regex pour excluder ou un preg_match pour detecter des scripts
 									// je pourrait etre plus sûr sur ce que l'utilisateur insert dans les forms (ae. whitelisté toutes 
 									// les possibilitées d'input de un utilisateur ou lieux d'excluder seulement certaines.
 

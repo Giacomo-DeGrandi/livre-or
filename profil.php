@@ -262,7 +262,7 @@ if( ((isset($_POST['username']) and ($_POST['username']) != '')) and
 
 			$loginbrut=htmlspecialchars($_POST['oldusername']);
 
-			$login = mysqli_real_escape_string($conn,$loginbrut);
+			$login = $loginbrut;
 
 			$quest = "SELECT login FROM utilisateurs WHERE login = '$login'"; 
 
