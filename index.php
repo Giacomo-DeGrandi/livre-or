@@ -7,6 +7,8 @@
 	<link href="livreor.css" rel="stylesheet">
 </head>
 <body>
+	<header>
+	</header>
 <main>
 	<div id="indextitles">
 		<h1> Hi! Welcome to goldenbook</h1><br>
