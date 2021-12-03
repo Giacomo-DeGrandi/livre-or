@@ -21,10 +21,10 @@
 			</form><br><br>
 <?php
 
-$servername = 'localhost';
-$username = 'root';
-$password = '';
-$database = 'livreor';
+$servername = 'localhost:3306';
+$username = 'giack';
+$password = 'giackgiack';
+$database = 'carlo-de-grandi-giacomo_livreor'; 
 
 		$conn = mysqli_connect($servername, $username, $password, $database);
 
