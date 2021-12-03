@@ -273,7 +273,7 @@ if( ((isset($_POST['username']) and ($_POST['username']) != '')) and
 				$w++;
 				echo $w;
 			 echo '<span>this username already exists</span>';
-			} else { 
+			} else { echo $w;
 				$usernamebrut= htmlspecialchars($_POST['username']);
 				$passwordbrut= htmlspecialchars($_POST['password2']);
 
