@@ -250,8 +250,6 @@ if(isset($_POST['edit'])){
 					</form></div>';
 }
 
-
-
 $conn = mysqli_connect($servername, $username, $password, $database);
 
 if( ((isset($_POST['username']) and ($_POST['username']) != '')) and
@@ -260,9 +258,7 @@ if( ((isset($_POST['username']) and ($_POST['username']) != '')) and
 
 		if(isset($_POST['submit'])){
 
-			$loginbrut=htmlspecialchars($_POST['oldusername']);
-
-			$login = $loginbrut;
+			$login=htmlspecialchars($_POST['oldusername']);
 
 			$quest = "SELECT login FROM utilisateurs WHERE login = '$login'"; 
 
