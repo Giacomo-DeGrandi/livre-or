@@ -117,10 +117,11 @@ if(isset($_POST['chcolor'])){
 	
 	echo '<tr><th style="background-color:var(--bkgcolor)">latest reviews sent</th></tr>';
 
-$servername = 'localhost:3306';
-$username = 'giditree';
-$password = 'admin.io';
-$database = 'carlo-de-grandi-giacomo_livreor'; 
+$servername = 'localhost';
+$username = 'root';
+$password = '';
+$database = 'livreor';
+
 
 $conn = mysqli_connect($servername, $username, $password, $database);
 
@@ -258,13 +259,17 @@ if( ((isset($_POST['username']) and ($_POST['username']) != '')) and
 
 		if(isset($_POST['submit'])){
 
-			$login=htmlspecialchars($_POST['oldusername']);
+			$loginbrut= htmlspecialchars($_POST['oldusername']);
 
-			$quest = "SELECT login FROM utilisateurs WHERE login = '$login'"; 
+			$login = mysqli_real_escape_string($conn,$loginbrut);
+
+			$quest = "SELECT login FROM utilisateurs WHERE login = '$login' "; 
 
 			$req = mysqli_query($conn,$quest);
 
-			if(mysqli_fetch_row($req) != 0 ){
+			if (mysqli_fetch_row($req) != 0) {
+				echo '<span class="ads">⚠️ this username already exists.<br/>Please choose another username</span>'; 
+			} else { 
 
 				$usernamebrut= htmlspecialchars($_POST['username']);
 				$passwordbrut= htmlspecialchars($_POST['password2']);
@@ -280,9 +285,11 @@ if( ((isset($_POST['username']) and ($_POST['username']) != '')) and
 
 				$_SESSION['user'] = $username;
 
-				header( "Location: profil.php" );			///
+				echo $login;
 
-			} else { echo '<span>this username already exists</span>';} 
+				//header( "Location: profil.php" );			///
+
+			} 
 		} elseif (isset($_POST['clsedit'])){
 			if(isset($_POST['edit'])){
 				$_POST['edit']= null;

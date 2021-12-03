@@ -35,12 +35,17 @@ echo "<span id='datecomments'>today is the " . date("Y/m/d") . "</span><br>";
 if(isset($_POST['comments'])){
 	if(isset($_POST['send'])){
 
-
+/*
 $servername = 'localhost:3306';
 $username = 'giditree';
 $password = 'admin.io';
 $database = 'carlo-de-grandi-giacomo_livreor'; 
+*/
 
+$servername = 'localhost';
+$username = 'root';
+$password = '';
+$database = 'livreor'; 
 
 		$conn = mysqli_connect($servername, $username, $password, $database);
 
