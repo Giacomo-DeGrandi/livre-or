@@ -268,7 +268,11 @@ if( ((isset($_POST['username']) and ($_POST['username']) != '')) and
 
 			var_dump($res);
 
-			if(mysqli_fetch_row($req) != 0 ){ echo '<span>this username already exists</span>';
+				$w=0;
+			if(mysqli_fetch_row($req) != 0 ){
+				$w++;
+				echo $w;
+			 echo '<span>this username already exists</span>';
 			} else { 
 				$usernamebrut= htmlspecialchars($_POST['username']);
 				$passwordbrut= htmlspecialchars($_POST['password2']);
