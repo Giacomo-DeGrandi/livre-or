@@ -331,6 +331,11 @@ if (isset($_POST['disconnect'])){
 			</div>
 <?php
 
+$servername = 'localhost:3306';
+$username = 'giditree';
+$password = 'admin.io';
+$database = 'carlo-de-grandi-giacomo_livreor'; 
+
 if(isset($_POST['comments'])){
 	if(isset($_POST['submit'])){
 
