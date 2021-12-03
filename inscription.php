@@ -22,8 +22,8 @@
 <?php
 
 $servername = 'localhost:3306';
-$username = 'giack';
-$password = 'giackgiack';
+$username = 'giditree';
+$password = 'admin.io';
 $database = 'carlo-de-grandi-giacomo_livreor'; 
 
 		$conn = mysqli_connect($servername, $username, $password, $database);
