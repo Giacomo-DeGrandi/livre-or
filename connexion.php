@@ -69,13 +69,12 @@ if 	( ((isset($_POST['login']) and ($_POST['login']) != '')) and
 				}
 } elseif (isset($_POST['submit'])) {
 	echo '<span class="ads">⚠️ please insert your username and password </span>'; 
-} elseif(isset($_SESSION['subscribe'])) {
+} elseif (isset($_SESSION['subscribe'])) {
 		echo '<span class="ads">hi! 👋 <h4>'.$_SESSION['subscribe'].'</h4>please insert your username and password to enter your account </span>'; 
 } else {
 	echo '<span class="ads">hi! 👋 please insert your username and password to enter your account </span>'; 
 }
  
-}
 
 ?>
 
