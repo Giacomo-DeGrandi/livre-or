@@ -335,8 +335,8 @@ if (isset($_POST['disconnect'])){
 			</div>
 <?php
 
-$servername = 'localhost:3306';
-$username = 'giditree';
+$servername = 'localhost:3306';				// je le reecrit parce que j'ai utilisé les meme variables pour des autres fins
+$username = 'giditree'; 
 $password = 'admin.io';
 $database = 'carlo-de-grandi-giacomo_livreor'; 
 
