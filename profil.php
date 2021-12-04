@@ -258,7 +258,7 @@ if( ((isset($_POST['username']) and ($_POST['username']) != '')) and
 
 		if(isset($_POST['submit'])){
 
-			$login=htmlspecialchars($_POST['oldusername']);
+			$login=htmlspecialchars($_POST['username']);
 
 			$quest = "SELECT login FROM utilisateurs WHERE login = '$login'"; 
 
@@ -270,10 +270,13 @@ if( ((isset($_POST['username']) and ($_POST['username']) != '')) and
 
 			if(mysqli_fetch_row($req) > 0 ){
 			 echo '<span>this username already exists</span>';
-			} else { 
+			} else {
+
+				$loginbrut = tmlspecialchars($_POST['oldusername']);
 				$usernamebrut= htmlspecialchars($_POST['username']);
 				$passwordbrut= htmlspecialchars($_POST['password2']);
 
+				$login = mysqli_real_escape_string($conn,$loginbrut);
 				$username = mysqli_real_escape_string($conn,$usernamebrut);
 				$password = mysqli_real_escape_string($conn,$passwordbrut); 
 
@@ -285,8 +288,10 @@ if( ((isset($_POST['username']) and ($_POST['username']) != '')) and
 
 				$_SESSION['user'] = $username;
 
-				header( "Location: profil.php" );} 
-			} elseif (isset($_POST['clsedit'])){
+				header( "Location: profil.php" );
+			} 
+
+		} elseif (isset($_POST['clsedit'])){
 			if(isset($_POST['edit'])){
 				$_POST['edit']= null;
 			}
