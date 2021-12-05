@@ -13,10 +13,17 @@ session_start();
 <body>
 	<header>
 			<a href="index.php" target="_top">go back to the home page </a>  &#160;&#160;&#160;&#160;
-			<a href="connexion.php" target="_top">log in</a> &#160;&#160;&#160;&#160;
-			<form action='' method="post">
+<?php 
+
+if(isset($_SESSION['user'])){
+	echo '<a href="profil.php" target="_top">back to your account</a>  &#160;&#160;&#160;&#160';
+	echo '<form action='' method="post">
 			<input type="submit" name="disconnect" value="&#160;disconnect from your account" class="buttonsdisc">
-		</form>
+		</form>';
+}
+
+?>
+			<a href="connexion.php" target="_top">log in</a> &#160;&#160;&#160;&#160;
 	</header>
 <?php
 
