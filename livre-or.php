@@ -17,7 +17,7 @@ session_start();
 
 if(isset($_SESSION['user'])){
 	echo '<a href="profil.php" target="_top">back to your account</a>  &#160;&#160;&#160;&#160';
-	echo '<form action='' method="post">
+	echo '<form action="" method="post">
 			<input type="submit" name="disconnect" value="&#160;disconnect from your account" class="buttonsdisc">
 		</form>';
 }
